@@ -10,7 +10,7 @@ class InterestingAreaBubble extends BodyComponent {
   @override
   Body createBody() {
     final shape = CircleShape();
-    shape.radius = 5;
+    shape.radius = 3.5;
 
     final fixtureDef = FixtureDef(
       shape,
