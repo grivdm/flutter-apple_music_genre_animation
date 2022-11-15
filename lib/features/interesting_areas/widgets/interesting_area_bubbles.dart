@@ -2,10 +2,11 @@ import 'package:apple_music_genre_animation/features/interesting_areas/utils/bou
 import 'package:apple_music_genre_animation/features/interesting_areas/utils/follow_body.dart';
 import 'package:apple_music_genre_animation/features/interesting_areas/widgets/interesting_area_bubble.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class InterestingAreaBubbles extends Forge2DGame {
+class InterestingAreaBubbles extends Forge2DGame with HasTappables {
   @override
   Color backgroundColor() =>
       Colors.blue; //add the colour that you need as background colour
