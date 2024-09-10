@@ -1,11 +1,11 @@
 import 'package:apple_music_genre_animation/features/interesting_areas/utils/boundaries.dart';
-import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/image_composition.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
 class InterestingAreaBubble extends BodyComponent
-    with ContactCallbacks, Tappable {
+    with ContactCallbacks, TapCallbacks {
   final Vector2 _position;
   bool isBubblePressed = false;
   static Paint defaultColor = Paint()..color = const Color(0xffF7F7F7);
@@ -18,7 +18,7 @@ class InterestingAreaBubble extends BodyComponent
   @override
   Body createBody() {
     final shape = CircleShape();
-    shape.radius = 3.5;
+    shape.radius = 35;
 
     final fixtureDef = FixtureDef(
       shape,
@@ -54,11 +54,13 @@ class InterestingAreaBubble extends BodyComponent
   }
 
   @override
-  bool onTapDown(_) {
-    isBubblePressed = !isBubblePressed;
-
-    return false;
+  bool containsLocalPoint(Vector2 point) {
+    const bubbleRadius = 35.0;
+    return point.distanceTo(Vector2.zero()) <= bubbleRadius;
   }
+
+  @override
+  void onTapDown(TapDownEvent event) => isBubblePressed = !isBubblePressed;
 
   @override
   void update(double dt) {
